@@ -6,7 +6,6 @@ Flower = entity:new({
   update = function(_ENV)
   end,
   draw = function(_ENV)
-    rectfill(x, y, x + 7, y + 7, 3)
     spr(src, x, y)
   end,
   move = function(_ENV, x, y)

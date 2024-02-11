@@ -3,9 +3,18 @@ Tile = entity:new({
     Flower:new({ src = rnd(12) + 1, x = 0, y = 8 }),
     Flower:new({ src = rnd(12) + 1, x = 8, y = 8 })
   },
+  newPos = { { x = 0, y = 0 }, { x = 0, y = 0 } },
   x = 0, y = 8,
   pos = 0,
-  init = function(_ENV)
+  init = function(_ENV, loc)
+    face = {
+      Flower:new({ src = rnd(12) + 1, x = loc.x, y = loc.y }),
+      Flower:new({ src = rnd(12) + 1, x = loc.x + 8, y = loc.y })
+    }
+    newPos = { { x = 0, y = 0 }, { x = 0, y = 0 } }
+    x = 0
+    y = 8
+    pos = 0
   end,
   update = function(_ENV)
   end,
@@ -13,8 +22,8 @@ Tile = entity:new({
     face[1]:draw()
     face[2]:draw()
   end,
-  rotate = function(_ENV)
-    newPos = { { x = face[1].x, y = face[1].y }, { x = face[2].x, y = face[2].y } }
+  rotate = function(_ENV, garden)
+    shallowCopy(_ENV, newPos, face)
     if pos == 0 then
       newPos[2].x -= 8
       newPos[2].y += 8
@@ -28,28 +37,29 @@ Tile = entity:new({
       newPos[1].y -= 8
       newPos[2].x += 8
     end
-    if garden:checkBounds({ x1 = newPos[1].x, y1 = newPos[1].y, x2 = newPos[1].x + 8, y2 = newPos[1].y + 8 }) then
-      face[1].x = newPos[1].x
-      face[1].y = newPos[1].y
-      face[2].x = newPos[2].x
-      face[2].y = newPos[2].y
+
+    if garden:checkBounds(newPos[1]) and garden:checkBounds(newPos[2]) then
       pos = (pos + 1) % 4
+      shallowCopy(_ENV, face, newPos)
     end
   end,
-  move = function(_ENV, delta)
-    newPos = { { x = face[1].x, y = face[1].y }, { x = face[2].x, y = face[2].y } }
+  move = function(_ENV, delta, garden)
+    shallowCopy(_ENV, newPos, face)
     newPos[1].x += delta[1] * 8
     newPos[1].y += delta[2] * 8
     newPos[2].x += delta[1] * 8
     newPos[2].y += delta[2] * 8
-    if garden:checkBounds({ x1 = newPos[1].x, y1 = newPos[1].y, x2 = newPos[1].x + 8, y2 = newPos[1].y + 8 }) then
-      face[1].x = newPos[1].x
-      face[1].y = newPos[1].y
-      face[2].x = newPos[2].x
-      face[2].y = newPos[2].y
+    if garden:checkBounds(newPos[1]) and garden:checkBounds(newPos[2]) then
+      shallowCopy(_ENV, face, newPos)
     end
   end,
-  shallowCopy = function(_ENV)
-    -- TODO shallow copy  
+  place = function(_ENV, garden)
+    garden:place(face)
+  end,
+  shallowCopy = function(_ENV, dest, src)
+    dest[1].x = src[1].x
+    dest[1].y = src[1].y
+    dest[2].x = src[2].x
+    dest[2].y = src[2].y
   end
 })
