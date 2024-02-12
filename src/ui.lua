@@ -32,11 +32,13 @@ UI = entity:new({
     rect(100, 10, 124, 82, 7)
     print('stack', 103, 12, 7)
     for i, v in ipairs(tileStack) do
-      tileStack[i]:draw()
+      if tileStack[i].selected == true then
+        rectfill(104, 8 * i * 1.5 + 8, 120, 8 * i * 1.5 + 15, 2)
+      end
+      tileStack[i].tile:draw()
     end
   end,
   drawFooter = function(_ENV)
     rectfill(0, 104, 128, 128, 5)
-
   end
 })

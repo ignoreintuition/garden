@@ -1,5 +1,6 @@
 GameScene = Scene:new({
   name = 'game',
+  mode = 'select',
   coins = 0,
   score = 0,
   timer = 100,
@@ -31,21 +32,38 @@ GameScene = Scene:new({
       tileStack = tileStack,
       timer = timer
     })
-    controller:update(currTile, garden)
+    res = controller:update({
+      tile = currTile,
+      garden = garden,
+      mode = mode,
+      tileStack = tileStack
+    })
+    mode = res.mode
+    currTile = res.tile
     garden:update()
-    currTile:update()
+    if mode == 'place' then
+      currTile:update()
+    end
     return 'game'
+  end,
+  setMode = function(_ENV, m)
+    mode = m
   end,
   draw = function(_ENV)
     cls()
     ui:draw()
     garden:draw()
-    currTile:draw()
+    if mode == 'place' then
+      currTile:draw()
+    end
   end,
   initTileStack = function(_ENV)
     for i = 1, 5 do
-      tileStack[i] = Tile:new()
-      tileStack[i]:init({ x = 104, y = 8 * i * 1.5 + 8 })
+      tileStack[i] = {}
+      tileStack[i].tile = Tile:new()
+      tileStack[i].tile:init({ x = 104, y = 8 * i * 1.5 + 8 })
+      tileStack[i].selected = false
     end
+    tileStack[1].selected = true
   end
 })

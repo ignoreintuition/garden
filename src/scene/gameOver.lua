@@ -10,7 +10,7 @@ GameOverScene = Scene:new({
   end,
   draw = function(_ENV)
     cls()
-    print('Game Over', 40, 40, 7)
-    print('Press X to restart', 25, 48, 7)
+    print('game over', 40, 40, 7)
+    print('press o to restart', 25, 48, 7)
   end
 })
