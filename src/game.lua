@@ -1,13 +1,15 @@
 state =  'title' 
 function _init()
   titleScene = TitleScene:new()
-  titleScene:init()
   gameScene = GameScene:new()
-  gameScene:init()
   gameOverScene = GameOverScene:new()
+  
+  titleScene:init()
+  gameScene:init()
   gameOverScene:init()
   printMeta()
 end
+
 
 function _update()
   if state == 'title' then

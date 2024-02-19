@@ -1,15 +1,15 @@
 Tile = entity:new({
   face = {
-    Flower:new({ src = rnd(12) + 1, x = 0, y = 8 }),
-    Flower:new({ src = rnd(12) + 1, x = 8, y = 8 })
+    Flower:new({ src = flr(rnd(12)) + 1, x = 0, y = 8 }),
+    Flower:new({ src = flr(rnd(12)) + 1, x = 8, y = 8 })
   },
   newPos = { { x = 0, y = 0 }, { x = 0, y = 0 } },
   x = 0, y = 8,
   pos = 0,
   init = function(_ENV, loc)
     face = {
-      Flower:new({ src = rnd(12) + 1, x = loc.x, y = loc.y }),
-      Flower:new({ src = rnd(12) + 1, x = loc.x + 8, y = loc.y })
+      Flower:new({ src = flr(rnd(12)) + 1, x = loc.x, y = loc.y }),
+      Flower:new({ src = flr(rnd(12)) + 1, x = loc.x + 8, y = loc.y })
     }
     newPos = { { x = 0, y = 0 }, { x = 0, y = 0 } }
     x = 0
@@ -38,7 +38,8 @@ Tile = entity:new({
       newPos[2].x += 8
     end
 
-    if garden:checkBounds(newPos[1]) and garden:checkBounds(newPos[2]) then
+    if garden:checkBounds(newPos[1])
+        and garden:checkBounds(newPos[2]) then
       pos = (pos + 1) % 4
       shallowCopy(_ENV, face, newPos)
     end
@@ -49,12 +50,21 @@ Tile = entity:new({
     newPos[1].y += delta[2] * 8
     newPos[2].x += delta[1] * 8
     newPos[2].y += delta[2] * 8
-    if garden:checkBounds(newPos[1]) and garden:checkBounds(newPos[2]) then
+    if garden:checkBounds(newPos[1])
+        and garden:checkBounds(newPos[2]) then
       shallowCopy(_ENV, face, newPos)
     end
   end,
   place = function(_ENV, garden)
     garden:place(face)
+  end,
+  shift = function(_ENV, newX, newY)
+    x = newX
+    y = newY
+    face[1].x = newX
+    face[1].y = newY
+    face[2].x = newX + 8
+    face[2].y = newY
   end,
   shallowCopy = function(_ENV, dest, src)
     dest[1].x = src[1].x

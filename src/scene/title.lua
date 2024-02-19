@@ -32,7 +32,7 @@ TitleScene = Scene:new({
     for i = 1, 3 do
       flowers[i] = {}
       for j = 1, 7 do
-        flowers[i][j] = Flower:new({ src = rnd(12) + 1, x = (j + 5) * 8 - 4, y = (i + 5) * 8 - 4 })
+        flowers[i][j] = Flower:new({ src = flr(rnd(12)) + 1, x = (j + 5) * 8 - 4, y = (i + 5) * 8 - 4 })
       end
     end
   end
