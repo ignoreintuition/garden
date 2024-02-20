@@ -1,9 +1,9 @@
 GameScene = Scene:new({
   name = 'game',
-  timer = 100,
-  coins = 0,
-  score = 0,
-  mode = 'select',
+  timer,
+  coins,
+  score,
+  mode,
   init = function(_ENV)
     controller = Controller:new()
     currTile = Tile:new()

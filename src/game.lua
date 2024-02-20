@@ -1,35 +1,40 @@
-state =  'title' 
+state = 'title'
+prevState = 'title'
 function _init()
   titleScene = TitleScene:new()
   gameScene = GameScene:new()
   gameOverScene = GameOverScene:new()
-  
+  settingsScene = SettingsScene:new()
+
   titleScene:init()
   gameScene:init()
   gameOverScene:init()
+  settingsScene:init()
+  
   printMeta()
 end
 
-
 function _update()
-  if state == 'title' then
-    prevState = state
-    state = titleScene:update()
-    if prevState != state then
+  if prevState != state then
+    if state == 'title' then
       titleScene:init()
-    end
-  elseif state == 'game' then
-    prevState = state
-    state = gameScene:update()
-    if prevState != state then
+    elseif state == 'game' then
       gameScene:init()
+    elseif state == 'gameOver' then
+      gameOverScene:init(gameScene.score)
+    elseif state == 'settings' then
+      settingsScene:init()
     end
-  elseif state == 'gameOver' then
     prevState = state
+  end
+  if state == 'title' then
+    state = titleScene:update()
+  elseif state == 'game' then
+    state = gameScene:update()
+  elseif state == 'gameOver' then
     state = gameOverScene:update()
-    if prevState != state then
-      gameOverScene:init()
-    end
+  elseif state == 'settings' then
+    state = settingsScene:update()
   end
 end
 
@@ -40,6 +45,8 @@ function _draw()
     gameScene:draw()
   elseif state == 'gameOver' then
     gameOverScene:draw()
+  elseif state == 'settings' then
+    settingsScene:draw()
   end
 end
 

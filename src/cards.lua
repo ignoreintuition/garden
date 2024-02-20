@@ -22,15 +22,23 @@ Cards = entity:new({
         line(14 + deck[i].offset + j * 2, 122, 14 + deck[i].offset + j * 2, 122, 10)
       end
       if gameScene.mode == 'card' and i == selectedCard then
-        rect(11 + deck[i].offset, 109, 24 + deck[i].offset, 123, 10)
+        rect(10 + deck[i].offset, 108, 25 + deck[i].offset, 124, 10)
       end
     end
   end,
   selectPrev = function(_ENV)
-    selectedCard += 1
+    if selectedCard == 4 then
+      selectedCard = 1
+    else
+      selectedCard += 1
+    end
   end,
   selectNext = function(_ENV)
-    selectedCard -= 1
+    if selectedCard == 1 then
+      selectedCard = 4
+    else
+      selectedCard -= 1
+    end
   end,
   selectCard = function(_ENV)
   end

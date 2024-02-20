@@ -7,6 +7,7 @@ __lua__
 #include src/scene/scene.lua
 #include src/scene/game.lua
 #include src/scene/title.lua
+#include src/scene/settings.lua
 #include src/scene/gameOver.lua
 #include src/ui.lua
 #include src/controller.lua

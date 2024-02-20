@@ -12,6 +12,8 @@ TitleScene = Scene:new({
     currInterval -= 1
     if btnp(4) then
       return 'game'
+    elseif btnp(5) then
+      return 'settings'
     end
     return 'title'
   end,
@@ -26,6 +28,7 @@ TitleScene = Scene:new({
       print('garden', 61, 54, 7)
       print('a game by ignoreintution', 24, 80, 7)
       print('press o to start', 40, 88, 7)
+      print('press x for settings', 35, 96, 7)
     end
   end,
   updateFlowers = function(_ENV)
