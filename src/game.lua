@@ -2,14 +2,14 @@ state = 'title'
 prevState = 'title'
 function _init()
   titleScene = TitleScene:new()
+  settingsScene = SettingsScene:new()
   gameScene = GameScene:new()
   gameOverScene = GameOverScene:new()
-  settingsScene = SettingsScene:new()
 
   titleScene:init()
+  settingsScene:init()
   gameScene:init()
   gameOverScene:init()
-  settingsScene:init()
   
   printMeta()
 end

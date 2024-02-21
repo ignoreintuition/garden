@@ -41,5 +41,17 @@ Cards = entity:new({
     end
   end,
   selectCard = function(_ENV)
+    if gameScene.coins >= deck[selectedCard].cost then
+      gameScene.coins -= deck[selectedCard].cost
+      if deck[selectedCard].spr == bomb then
+        gameScene.garden:bomb()
+      elseif deck[selectedCard].spr == refresh then
+        gameScene.tileStack:shuffle()
+      elseif deck[selectedCard].spr == timer then
+        gameScene.timer += 20
+      elseif deck[selectedCard].spr == reduce then
+      gameScene.tileStack:reduceCost()
+      end
+    end
   end
 })

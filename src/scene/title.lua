@@ -27,8 +27,8 @@ TitleScene = Scene:new({
       rectfill(52, 52, 92, 60, 0)
       print('garden', 61, 54, 7)
       print('a game by ignoreintution', 24, 80, 7)
-      print('press o to start', 40, 88, 7)
-      print('press x for settings', 35, 96, 7)
+      print('press 🅾️ to start', 40, 88, 7)
+      print('press ❎ for settings', 32, 96, 7)
     end
   end,
   updateFlowers = function(_ENV)

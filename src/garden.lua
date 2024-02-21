@@ -83,5 +83,13 @@ Garden = entity:new({
     gameScene.score += 10
     gameScene.timer += 3
     gameScene.coins += 1
+  end,
+  bomb = function(_ENV)
+    for y = 1, 12 do
+      flowers[y] = {}
+      for x = 1, 12 do
+        flowers[y][x] = 0
+      end
+    end 
   end
 })

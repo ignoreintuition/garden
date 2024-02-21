@@ -7,13 +7,16 @@ GameOverScene = Scene:new({
   update = function(_ENV)
     if btnp(4) then
       return 'game'
+    elseif btnp(5) then
+      return 'title'
     end
     return 'gameOver'
   end,
   draw = function(_ENV)
     cls()
     print('game over', 40, 40, 7)
-    print('final score ' .. finalScore, 30, 48, 7)
-    print('press o to restart', 25, 56, 7)
+    print('final score ' .. finalScore, 32, 56, 7)
+    print('press 🅾️ to restart', 22, 64, 7)
+    print('press ❎ for title screen', 10, 72, 7)
   end
 })

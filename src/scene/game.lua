@@ -5,6 +5,11 @@ GameScene = Scene:new({
   score,
   mode,
   init = function(_ENV)
+    timer = settingsScene.timer
+    coins = 0
+    score = 0
+    mode = 'select'
+
     controller = Controller:new()
     currTile = Tile:new()
     garden = Garden:new()
@@ -18,10 +23,6 @@ GameScene = Scene:new({
     cards:init()
     ui:init()
     
-    timer = 100
-    coins = 0
-    score = 0
-    mode = 'select'
   end,
   update = function(_ENV)
     if timer <= 0 then

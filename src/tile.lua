@@ -1,15 +1,17 @@
 Tile = entity:new({
+  flowerCnt = 12,
   face = {
-    Flower:new({ src = flr(rnd(12)) + 1, x = 0, y = 8 }),
-    Flower:new({ src = flr(rnd(12)) + 1, x = 8, y = 8 })
+    Flower:new({ src = flr(rnd(flowerCnt)) + 1, x = 0, y = 8 }),
+    Flower:new({ src = flr(rnd(flowerCnt)) + 1, x = 8, y = 8 })
   },
   newPos = { { x = 0, y = 0 }, { x = 0, y = 0 } },
   x = 0, y = 8,
   pos = 0,
   init = function(_ENV, loc)
+    flowerCnt = settingsScene.flowerCnt
     face = {
-      Flower:new({ src = flr(rnd(12)) + 1, x = loc.x, y = loc.y }),
-      Flower:new({ src = flr(rnd(12)) + 1, x = loc.x + 8, y = loc.y })
+      Flower:new({ src = flr(rnd(flowerCnt)) + 1, x = loc.x, y = loc.y }),
+      Flower:new({ src = flr(rnd(flowerCnt)) + 1, x = loc.x + 8, y = loc.y })
     }
     newPos = { { x = 0, y = 0 }, { x = 0, y = 0 } }
     x = 0
