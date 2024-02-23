@@ -61,8 +61,11 @@ Garden = entity:new({
         and flowers[y - 2][x] == flowers[y][x] then
       scoreFlowers(_ENV)
       flowers[y][x] = 0
+      gameScene.boomStack:add((x - 1) * 8, y * 8)
       flowers[y - 1][x] = 0
+      gameScene.boomStack:add((x - 1) * 8, (y - 1) * 8)
       flowers[y - 2][x] = 0
+      gameScene.boomStack:add((x - 1) * 8, (y - 2) * 8)
       return true
     end
     return false
@@ -73,8 +76,11 @@ Garden = entity:new({
         and flowers[y][x - 2] == flowers[y][x] then
       scoreFlowers(_ENV)
       flowers[y][x] = 0
+      gameScene.boomStack:add((x - 1) * 8, y * 8)
       flowers[y][x - 1] = 0
+      gameScene.boomStack:add((x - 2) * 8, y * 8)
       flowers[y][x - 2] = 0
+      gameScene.boomStack:add((x - 3) * 8, y * 8)
       return true
     end
     return false
@@ -90,6 +96,6 @@ Garden = entity:new({
       for x = 1, 12 do
         flowers[y][x] = 0
       end
-    end 
+    end
   end
 })

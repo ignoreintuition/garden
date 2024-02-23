@@ -1,8 +1,10 @@
 UI = entity:new({
   head = { x1 = 0, y1 = 0, x2 = 128, y2 = 8 },
   init = function(_ENV)
+    coin = Coin:new()
   end,
   update = function(_ENV)
+    coin:update()
   end,
   draw = function(_ENV)
     drawHeader(_ENV)
@@ -14,7 +16,7 @@ UI = entity:new({
     rectfill(0, 0, 128, 6, 1)
     line(0, 7, 128, 7, 7)
     print("timer " .. gameScene.timer, 0, 1, 7)
-    spr(16, 50, 0)
+    coin:draw()
     print(gameScene.coins, 60, 1, 7)
     print("score " .. gameScene.score, 90, 1, 7)
   end,

@@ -14,15 +14,16 @@ GameScene = Scene:new({
     currTile = Tile:new()
     garden = Garden:new()
     tileStack = TileStack:new()
+    boomStack = BoomStack:new()
     cards = Cards:new()
     ui = UI:new()
 
     currTile:init({ x = 0, y = 8 })
     garden:init()
     tileStack:init()
+    boomStack:init()
     cards:init()
     ui:init()
-    
   end,
   update = function(_ENV)
     if timer <= 0 then
@@ -40,6 +41,7 @@ GameScene = Scene:new({
     })
     currTile = res.tile
     garden:update()
+    boomStack:update()
     if mode == 'place' then
       currTile:update()
     end
@@ -52,5 +54,6 @@ GameScene = Scene:new({
     if mode == 'place' then
       currTile:draw()
     end
+    boomStack:draw()
   end
 })
