@@ -1,4 +1,4 @@
-#Garden v 1.0.0 (Official Release)
+# Garden v 1.0.0 (Official Release)
 
 Garden is a puzzle game to match flowers in a garden to earn points. 
 [Play now in Pico-8](https://www.lexaloffle.com/bbs/?uid=75087)
