@@ -28,9 +28,10 @@ Boom = entity:new({
   interval = 8,
   timer = 0,
   frame = 1,
-  animationCycle = { 19, 20, 21 },
+  animationCycle = { 19, 20, 21, 22 },
   complete = false,
   init = function(_ENV, locX, locY)
+    sfx(3)
     x = locX
     y = locY
   end,
@@ -38,11 +39,12 @@ Boom = entity:new({
     timer += 1
     if timer == interval then
       newFrame = frame + 1
-      if (newFrame > 3) then
+      if (newFrame > 4) then
         complete = true
       else 
         frame=newFrame
       end
+
       timer = 0
     end
   end,

@@ -18,6 +18,7 @@ TileStack = entity:new({
     stack[1].selected = true
   end,
   selectPrev = function(_ENV)
+    sfx(4)
     stack[currentItem].selected = false
     if currentItem == 1 then
       currentItem = 5
@@ -28,6 +29,7 @@ TileStack = entity:new({
     return { tile = {} }
   end,
   selectNext = function(_ENV)
+    sfx(4)
     stack[currentItem].selected = false
     if currentItem == 5 then
       currentItem = 1
@@ -57,8 +59,10 @@ TileStack = entity:new({
       stack[1].selected = true
       currentItem = 1
       gameScene.mode = 'place'
+      sfx(2)
       return { tile = tile }
     end
+    sfx(5)
     return { tile = {} }
   end,
   draw = function(_ENV)
@@ -70,7 +74,9 @@ TileStack = entity:new({
         end
         local x = 100
         local y = 8 * i * 1.5 + 8
-        rectfill(x, y, x + 16, y + 8, 2)
+        if gameScene.mode == 'select' then
+          rectfill(x, y, x + 16, y + 8, 2)
+        end
         if cost > 1 then
           for j = 1, cost - 1 do
             line(x + offset[j].x, y + offset[j].y, x + offset[j].x, y + offset[j].y, 10)
@@ -87,7 +93,7 @@ TileStack = entity:new({
       stack[i].tile:init({ x = 100, y = 8 * i * 1.5 + 8 })
       stack[i].selected = false
     end
-    stack[1].selected = true 
+    stack[1].selected = true
   end,
   reduceCost = function(_ENV)
     costOffset += 1

@@ -27,6 +27,7 @@ Cards = entity:new({
     end
   end,
   selectPrev = function(_ENV)
+    sfx(4)
     if selectedCard == 4 then
       selectedCard = 1
     else
@@ -34,6 +35,7 @@ Cards = entity:new({
     end
   end,
   selectNext = function(_ENV)
+    sfx(4)
     if selectedCard == 1 then
       selectedCard = 4
     else

@@ -13,20 +13,28 @@ Controller = entity:new({
   placeTile = function(_ENV, game)
     if btnp(0) then
       game.tile:move({ -1, 0 }, game.garden)
+      sfx(0)
     elseif btnp(1) then
       game.tile:move({ 1, 0 }, game.garden)
+      sfx(0)
     elseif btnp(2) then
       game.tile:move({ 0, -1 }, game.garden)
+      sfx(0)
     elseif btnp(3) then
       game.tile:move({ 0, 1 }, game.garden)
+      sfx(0)
     elseif btnp(5) then
       game.tile:rotate(game.garden)
+      sfx(0)
     elseif btnp(4) then
       if not game.garden:checkCollision(game.tile.face[1]) and not game.garden:checkCollision(game.tile.face[2]) then
         game.tile:place(game.garden)
         game.garden:score()
         gameScene.mode = 'select'
+        sfx(2)
         return { tile = {} }
+      else
+        sfx(5)
       end
     end
     return {

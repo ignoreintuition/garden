@@ -5,6 +5,7 @@ GameScene = Scene:new({
   score,
   mode,
   init = function(_ENV)
+    music(0, 1000)
     timer = settingsScene.timer
     coins = 0
     score = 0

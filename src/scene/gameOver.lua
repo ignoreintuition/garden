@@ -6,8 +6,10 @@ GameOverScene = Scene:new({
   end,
   update = function(_ENV)
     if btnp(4) then
+      sfx(3)
       return 'game'
     elseif btnp(5) then
+      sfx(3)
       return 'title'
     end
     return 'gameOver'

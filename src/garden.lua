@@ -91,11 +91,25 @@ Garden = entity:new({
     gameScene.coins += 1
   end,
   bomb = function(_ENV)
+    local oldFlowers = shallowCopy(flowers)
     for y = 1, 12 do
       flowers[y] = {}
       for x = 1, 12 do
+        if oldFlowers[y][x] > 0 then
+          gameScene.boomStack:add((x - 1) * 8, y * 8)
+        end
         flowers[y][x] = 0
       end
     end
+  end,
+  shallowCopy = function(g) 
+    c = {}
+    for y = 1, 12 do
+      c[y] = {}
+      for x = 1, 12 do
+        c[y][x] = g[y][x]
+      end
+    end
+    return c
   end
 })
