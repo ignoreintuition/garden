@@ -26,6 +26,7 @@ UI = entity:new({
     rect(98, 10, 126, 82, 7)
     print('stack', 103, 12, 7)
     gameScene.tileStack:draw()
+    gameScene.cards:update()
 
   end,
   drawFooter = function(_ENV)

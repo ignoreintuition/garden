@@ -60,6 +60,7 @@ Controller = entity:new({
       gameScene.cards:selectNext()
     elseif btnp(4) then
       gameScene.cards:selectCard()
+      gameScene.mode = 'select'
     elseif btnp(5) then
       gameScene.mode = 'select'
     end

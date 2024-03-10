@@ -4,11 +4,12 @@ Cards = entity:new({
   timer = 34,
   reduce = 35,
   selectedCard = 1,
+  interval = 10,
   deck = {
     { spr = 32, offset = 0, cost = 1 },
-    { spr = 33, offset = 20, cost = 2 },
-    { spr = 34, offset = 40, cost = 3 },
-    { spr = 35, offset = 60, cost = 4 }
+    { spr = 34, offset = 20, cost = 2 },
+    { spr = 36, offset = 40, cost = 3 },
+    { spr = 38, offset = 60, cost = 4 }
   },
   init = function(_ENV)
     selectedCard = 1
@@ -23,6 +24,21 @@ Cards = entity:new({
       end
       if gameScene.mode == 'card' and i == selectedCard then
         rect(10 + deck[i].offset, 108, 25 + deck[i].offset, 124, 10)
+      end
+    end
+  end,
+  update = function(_ENV)
+    for i = 1, 4 do
+      if deck[i].animate == true then
+        if deck[i].timer == 0 then
+          deck[i].spr += 1
+        end
+        deck[i].timer += 1
+        if deck[i].timer == interval then
+          deck[i].spr -= 1
+          deck[i].animate = false
+          deck[i].timer = 0
+        end
       end
     end
   end,
@@ -52,8 +68,10 @@ Cards = entity:new({
       elseif deck[selectedCard].spr == timer then
         gameScene.timer += 20
       elseif deck[selectedCard].spr == reduce then
-      gameScene.tileStack:reduceCost()
+        gameScene.tileStack:reduceCost()
       end
+      deck[selectedCard].animate = true
+      deck[selectedCard].timer = 0
     end
   end
 })
